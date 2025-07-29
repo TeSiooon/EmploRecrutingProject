@@ -2,6 +2,7 @@
 
 public class Team
 {
+    private readonly List<Employee> employees = new();
     private Team()
     {
         //For ORM
@@ -15,6 +16,7 @@ public class Team
 
     public Guid Id { get; set; }
     public string Name { get; set; }
+    public IReadOnlyCollection<Employee> Employees => employees.AsReadOnly();
 
     public static Team Create(string name)
     {

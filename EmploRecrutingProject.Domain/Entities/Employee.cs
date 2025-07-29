@@ -2,6 +2,8 @@
 
 public class Employee
 {
+    private readonly List<Vacation> vacations = new();
+
     private Employee()
     {
         //For ORM
@@ -18,6 +20,14 @@ public class Employee
     public string Name { get; set; }
     public Guid? SuperiorId { get; set; }
     public Employee Superior { get; set; }
+
+    public Guid TeamId { get; set; }
+    public Team Team { get; set; }
+
+    public Guid VacationPackageId { get; set; }
+    public VacationPackage VacationPackage { get; set; }
+
+    public IReadOnlyCollection<Vacation> Vacations => vacations.AsReadOnly();
 
     public static Employee Create(string name, Guid? superiorId = null)
     {

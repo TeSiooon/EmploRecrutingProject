@@ -2,6 +2,7 @@
 
 public class VacationPackage
 {
+    private readonly List<Employee> employees = new();
     private VacationPackage()
     {
         //For ORM
@@ -19,6 +20,7 @@ public class VacationPackage
     public string Name { get; set; }
     public int GrantedDays { get; set; }
     public int Year { get; set; }
+    public IReadOnlyCollection<Employee> Employees => employees.AsReadOnly();
 
     public static VacationPackage Create(string name, int grantedDays, int year)
     {
