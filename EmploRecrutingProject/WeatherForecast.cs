@@ -1,4 +1,4 @@
-namespace EmploRecrutingProject
+namespace EmploRecrutingProject.API
 {
     public class WeatherForecast
     {

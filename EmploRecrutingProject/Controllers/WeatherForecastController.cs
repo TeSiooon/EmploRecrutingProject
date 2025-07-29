@@ -1,3 +1,4 @@
+using EmploRecrutingProject.API;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmploRecrutingProject.Controllers
