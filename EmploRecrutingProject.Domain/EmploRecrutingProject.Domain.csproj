@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EmploRecrutingProject.Common\EmploRecrutingProject.Common.csproj" />
+  </ItemGroup>
+
 </Project>

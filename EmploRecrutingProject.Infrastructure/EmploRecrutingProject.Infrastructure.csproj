@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="EntitiesConfiguration\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmploRecrutingProject.Application\EmploRecrutingProject.Application.csproj" />
+    <ProjectReference Include="..\EmploRecrutingProject.Domain\EmploRecrutingProject.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
