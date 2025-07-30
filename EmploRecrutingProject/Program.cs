@@ -1,5 +1,7 @@
 using EmploRecrutingProject.Application.Extensions;
 using EmploRecrutingProject.Infrastructure.Extensions;
+using EmploRecrutingProject.Infrastructure.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<EmploRecrutingProjectDbContext>();
+    db.Database.Migrate();
 }
 
 app.UseHttpsRedirection();
