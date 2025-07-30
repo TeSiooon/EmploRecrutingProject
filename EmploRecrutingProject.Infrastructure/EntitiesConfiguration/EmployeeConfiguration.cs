@@ -14,15 +14,9 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             .IsRequired()
             .HasMaxLength(200);
 
-        //builder.HasOne(e => e.Superior)
-        //    .WithMany()
-        //    .HasForeignKey(e => e.SuperiorId)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
-
         // FK for Team
         builder.Property(e => e.TeamId)
-               .IsRequired();
+               .IsRequired(required: false);
 
         builder.HasOne(e => e.Team)
                .WithMany(t => t.Employees)
@@ -31,7 +25,7 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
 
         // FK for VacationPackage
         builder.Property(e => e.VacationPackageId)
-            .IsRequired();
+            .IsRequired(required: false);
 
         builder.HasOne(e => e.VacationPackage)
                .WithMany(vp => vp.Employees)

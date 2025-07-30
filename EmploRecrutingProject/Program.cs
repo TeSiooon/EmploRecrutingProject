@@ -1,3 +1,4 @@
+using EmploRecrutingProject.API.Extensions;
 using EmploRecrutingProject.Application.Extensions;
 using EmploRecrutingProject.Infrastructure.Extensions;
 using EmploRecrutingProject.Infrastructure.Persistance;
@@ -5,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddPresentation();
 builder.Services.AddApplication();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

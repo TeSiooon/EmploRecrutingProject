@@ -1,5 +1,9 @@
-﻿using EmploRecrutingProject.Common.Common;
+﻿using EmploRecrutingProject.Application.Abstractions.Repositories;
+using EmploRecrutingProject.Application.Abstractions.Services;
+using EmploRecrutingProject.Common.Common;
 using EmploRecrutingProject.Infrastructure.Persistance;
+using EmploRecrutingProject.Infrastructure.Repositories;
+using EmploRecrutingProject.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,5 +25,9 @@ public static class ServiceCollectionExtensions
 
 
         //Register other infrastructure services here
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        services.AddScoped<IEmployeeHierarchyRepository, EmployeeHierarchyRepository>();
+        services.AddScoped<IEmployeeHierarchyService, EmployeeHierarchyService>();
     }
 }

@@ -17,11 +17,11 @@ public class Vacation
         EmployeeId = employeeId;
     }
 
-    public Guid Id { get; set; }
-    public DateTime DateSince { get; set; }
-    public DateTime DateUntil { get; set; }
-    public int NumberOfHours { get; set; }
-    public int IsPartialVacation { get; set; }
+    public Guid Id { get; private set; }
+    public DateTime DateSince { get; private set; }
+    public DateTime DateUntil { get; private set; }
+    public int NumberOfHours { get; private set; }
+    public int IsPartialVacation { get; private set; }
     public Guid EmployeeId { get; private set; }
     public Employee Employee { get; private set; }
 

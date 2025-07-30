@@ -4,6 +4,7 @@ using EmploRecrutingProject.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmploRecrutingProject.Infrastructure.Migrations
 {
     [DbContext(typeof(EmploRecrutingProjectDbContext))]
-    partial class EmploRecrutingProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250730122708_Task1")]
+    partial class Task1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,10 +39,10 @@ namespace EmploRecrutingProject.Infrastructure.Migrations
                     b.Property<Guid?>("SuperiorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("TeamId")
+                    b.Property<Guid>("TeamId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("VacationPackageId")
+                    b.Property<Guid>("VacationPackageId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -146,12 +149,14 @@ namespace EmploRecrutingProject.Infrastructure.Migrations
                     b.HasOne("EmploRecrutingProject.Domain.Entities.Team", "Team")
                         .WithMany("Employees")
                         .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("EmploRecrutingProject.Domain.Entities.VacationPackage", "VacationPackage")
                         .WithMany("Employees")
                         .HasForeignKey("VacationPackageId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Superior");
 
