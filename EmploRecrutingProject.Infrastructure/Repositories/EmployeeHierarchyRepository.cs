@@ -30,12 +30,12 @@ public class EmployeeHierarchyRepository : IEmployeeHierarchyRepository
                 .RemoveRange(toDelete);
     }
 
-    public async Task<EmployeeHierarchy> FindAsync(Guid employeeId, Guid superiorId, CancellationToken cancellationToken = default)
+    public async Task<EmployeeHierarchy?> FindAsync(Guid employeeId, Guid superiorId, CancellationToken cancellationToken = default)
     {
         return await dbContext.EmployeeHierarchies
             .AsNoTracking()
             .SingleOrDefaultAsync(
-                x => x.EmployeeId == employeeId && x.SuperiorId == superiorId, cancellationToken) ?? throw new KeyNotFoundException();
+                x => x.EmployeeId == employeeId && x.SuperiorId == superiorId, cancellationToken);
     }
 
     public async Task<List<EmployeeHierarchy>> GetByEmployeeIdAsync(Guid employeeId, CancellationToken cancellationToken = default)
