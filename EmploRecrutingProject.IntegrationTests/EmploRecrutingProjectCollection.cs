@@ -3,7 +3,7 @@
 namespace EmploRecrutingProject.IntegrationTests;
 
 [CollectionDefinition("EmploRecrutingProject Collection")]
-public class EmploRecrutingProject : ICollectionFixture<EmploRecrutingProjectFixture>
+public class EmploRecrutingProjectCollection : ICollectionFixture<EmploRecrutingProjectFixture>
 {
     // marker
 }
