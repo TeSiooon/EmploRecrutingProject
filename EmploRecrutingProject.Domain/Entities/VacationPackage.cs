@@ -16,10 +16,10 @@ public class VacationPackage
         Year = year;
     }
 
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-    public int GrantedDays { get; set; }
-    public int Year { get; set; }
+    public Guid Id { get; private set; }
+    public string Name { get; private set; }
+    public int GrantedDays { get; private set; }
+    public int Year { get; private set; }
     public IReadOnlyCollection<Employee> Employees => employees.AsReadOnly();
 
     public static VacationPackage Create(string name, int grantedDays, int year)

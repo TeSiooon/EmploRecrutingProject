@@ -14,8 +14,8 @@ public class Team
         Name = name;
     }
 
-    public Guid Id { get; set; }
-    public string Name { get; set; }
+    public Guid Id { get; private set; }
+    public string Name { get; private set; }
     public IReadOnlyCollection<Employee> Employees => employees.AsReadOnly();
 
     public static Team Create(string name)
