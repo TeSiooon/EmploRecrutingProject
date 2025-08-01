@@ -1,7 +1,7 @@
 ﻿using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.Abstractions.Services;
+using EmploRecrutingProject.Application.Common;
 using EmploRecrutingProject.Application.Extensions;
-using EmploRecrutingProject.Common.Common;
 using EmploRecrutingProject.Infrastructure.Persistance;
 using EmploRecrutingProject.Infrastructure.Repositories;
 using EmploRecrutingProject.Infrastructure.Services;

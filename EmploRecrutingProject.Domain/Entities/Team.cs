@@ -22,4 +22,11 @@ public class Team
     {
         return new Team(name);
     }
+
+    public void AddEmployee(Employee employee)
+    {
+        if (employee == null) throw new ArgumentNullException(nameof(employee));
+        employees.Add(employee);
+        employee.AssignToTeam(this);
+    }
 }

@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmploRecrutingProject.Application\EmploRecrutingProject.Application.csproj" />
-    <ProjectReference Include="..\EmploRecrutingProject.Common\EmploRecrutingProject.Common.csproj" />
     <ProjectReference Include="..\EmploRecrutingProject.Domain\EmploRecrutingProject.Domain.csproj" />
     <ProjectReference Include="..\EmploRecrutingProject.Infrastructure\EmploRecrutingProject.Infrastructure.csproj" />
   </ItemGroup>

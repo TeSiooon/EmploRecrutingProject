@@ -1,6 +1,7 @@
-﻿using EmploRecrutingProject.Application.Abstractions.Repositories;
+﻿using EmploRecrutingProject.Application.Abstractions;
+using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.Abstractions.Services;
-using EmploRecrutingProject.Common.Common;
+using EmploRecrutingProject.Application.Common;
 using EmploRecrutingProject.Infrastructure.Persistance;
 using EmploRecrutingProject.Infrastructure.Repositories;
 using EmploRecrutingProject.Infrastructure.Services;
@@ -22,6 +23,7 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<EmploRecrutingProjectDbContext>());
 
 
         //Register other infrastructure services here

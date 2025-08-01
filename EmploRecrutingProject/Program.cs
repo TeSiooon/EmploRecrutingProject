@@ -2,6 +2,7 @@ using EmploRecrutingProject.API.Extensions;
 using EmploRecrutingProject.Application.Extensions;
 using EmploRecrutingProject.Infrastructure.Extensions;
 using EmploRecrutingProject.Infrastructure.Persistance;
+using EmploRecrutingProject.Infrastructure.Seeders;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddApplication();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<MainSeeder>();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
@@ -27,6 +29,9 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<EmploRecrutingProjectDbContext>();
     db.Database.Migrate();
+
+    var mainSeeder = scope.ServiceProvider.GetRequiredService<MainSeeder>();
+    await mainSeeder.SeedAsync();
 }
 
 app.UseHttpsRedirection();

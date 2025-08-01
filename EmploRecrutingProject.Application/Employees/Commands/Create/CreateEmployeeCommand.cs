@@ -1,6 +1,6 @@
 ﻿using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.Abstractions.Services;
-using EmploRecrutingProject.Common.Common;
+using EmploRecrutingProject.Application.Common;
 using EmploRecrutingProject.Domain.Entities;
 using MediatR;
 

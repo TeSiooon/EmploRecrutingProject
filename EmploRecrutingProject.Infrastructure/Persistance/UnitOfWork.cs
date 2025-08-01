@@ -1,4 +1,4 @@
-﻿using EmploRecrutingProject.Common.Common;
+﻿using EmploRecrutingProject.Application.Common;
 
 namespace EmploRecrutingProject.Infrastructure.Persistance;
 
