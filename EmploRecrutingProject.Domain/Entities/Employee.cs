@@ -44,4 +44,20 @@ public class Employee
         Name = name;
         SuperiorId = superiorId;
     }
+
+    public void AssignToTeam(Team team)
+    {
+        Team = team;
+        TeamId = team?.Id;
+    } 
+    public void AddVacation(Vacation vacation)
+    {
+        if (vacation == null) throw new ArgumentNullException(nameof(vacation));
+        vacations.Add(vacation);
+    }
+    public void AssignVacationPackage(VacationPackage vacationPackage)
+    {
+        VacationPackage = vacationPackage ?? throw new ArgumentNullException(nameof(vacationPackage));
+        VacationPackageId = vacationPackage.Id;
+    }
 }

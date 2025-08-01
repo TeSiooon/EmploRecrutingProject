@@ -31,5 +31,10 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
                .WithMany(vp => vp.Employees)
                .HasForeignKey(e => e.VacationPackageId)
                .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasMany(e => e.Vacations)
+               .WithOne(v => v.Employee)
+               .HasForeignKey(v => v.EmployeeId)
+               .OnDelete(DeleteBehavior.Cascade);
     }
 }
