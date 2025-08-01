@@ -8,8 +8,8 @@ namespace EmploRecrutingProject.Application.Employees.Commands.Create;
 
 public record CreateEmployeeCommand : IRequest<Guid>
 {
-    public string Name { get; set; }
-    public Guid? SuperiorId { get; set; }
+    public string Name { get; init; }
+    public Guid? SuperiorId { get; init; }
 
     public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, Guid>
     {
