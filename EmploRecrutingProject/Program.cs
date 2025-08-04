@@ -1,4 +1,5 @@
 using EmploRecrutingProject.API.Extensions;
+using EmploRecrutingProject.API.Middleware;
 using EmploRecrutingProject.Application.Extensions;
 using EmploRecrutingProject.Infrastructure.Extensions;
 using EmploRecrutingProject.Infrastructure.Persistance;
@@ -24,6 +25,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 using (var scope = app.Services.CreateScope())
 {

@@ -13,9 +13,9 @@ public class TeamController(IMediator mediator) : ControllerBase
     /// Zwraca listę zespołów, w których żaden z pracowników nie złożył żadnego wniosku urlopowego w 2019 roku.
     /// </summary>
     [HttpGet("without-vacation-in-2019")]
-    public async Task<ActionResult<List<TeamVm>>> GetTeamsWithoutVacationIn2019()
+    public async Task<ActionResult<List<TeamVm>>> GetTeamsWithoutVacationIn2019(CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(new Task2CQuery());
+        var result = await mediator.Send(new Task2CQuery(), cancellationToken);
         return Ok(result);
     }
 }

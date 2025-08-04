@@ -21,6 +21,8 @@ public class EmploRecrutingProjectFixture : IAsyncLifetime, IDisposable
     public IEmployeeHierarchyRepository EmployeeHierarchyRepository { get; }
     public IEmployeeRepository EmployeeRepository { get; }
     public IEmployeeHierarchyService EmployeeHierarchyService { get; }
+    public IVacationRepository VacationRepository { get; }
+    public ITeamRepository TeamRepository { get; }
 
     public EmploRecrutingProjectFixture()
     {
@@ -36,6 +38,8 @@ public class EmploRecrutingProjectFixture : IAsyncLifetime, IDisposable
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<IEmployeeHierarchyService, EmployeeHierarchyService>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IVacationRepository, VacationRepository>();
+        services.AddScoped<ITeamRepository, TeamRepository>();
 
         services.AddApplication();
 
@@ -47,6 +51,8 @@ public class EmploRecrutingProjectFixture : IAsyncLifetime, IDisposable
         EmployeeHierarchyRepository = scope.ServiceProvider.GetRequiredService<IEmployeeHierarchyRepository>();
         EmployeeRepository = scope.ServiceProvider.GetRequiredService<IEmployeeRepository>();
         EmployeeHierarchyService = scope.ServiceProvider.GetRequiredService<IEmployeeHierarchyService>();
+        VacationRepository = scope.ServiceProvider.GetRequiredService<IVacationRepository>();
+        TeamRepository = scope.ServiceProvider.GetRequiredService<ITeamRepository>();
     }
 
     public void Dispose()

@@ -13,18 +13,19 @@ namespace EmploRecrutingProject.API.Controllers;
 public class EmployeeController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeCommand command)
+    public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeCommand command, CancellationToken cancellationToken)
     {
-        var employeeId = await mediator.Send(command);
+        var employeeId = await mediator.Send(command, cancellationToken);
         return Ok(employeeId);
     }
+
     /// <summary>
     /// Zwraca listę pracowników z zespołu o nazwie “.NET”, którzy mają co najmniej jeden wniosek urlopowy w 2019 roku.
     /// </summary>
     [HttpGet("with-vacations-in-net-2019")]
-    public async Task<ActionResult<List<EmployeeVm>>> GetEmployeesWithVacationsIn2019() 
+    public async Task<ActionResult<List<EmployeeVm>>> GetEmployeesWithVacationsIn2019(CancellationToken cancellationToken) 
     {
-        var result = await mediator.Send(new GetTask2AQuery());
+        var result = await mediator.Send(new GetTask2AQuery(), cancellationToken);
         return Ok(result);
     }
 
@@ -33,9 +34,9 @@ public class EmployeeController(IMediator mediator) : ControllerBase
     /// Dniem zużytym jest dzień, który znajduje się w całości w przeszłości.
     /// </summary>
     [HttpGet("used-vacation-this-year")]
-    public async Task<ActionResult<List<UsedVacationVm>>> GetUsedVacationThisYearAsync()
+    public async Task<ActionResult<List<UsedVacationVm>>> GetUsedVacationThisYearAsync(CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(new Task2BQuery());
+        var result = await mediator.Send(new Task2BQuery(), cancellationToken);
         return Ok(result);
     }
 
@@ -43,9 +44,9 @@ public class EmployeeController(IMediator mediator) : ControllerBase
     /// Wylicza ile dni urlopowych ma do wykorzystania pracownik w bieżącym roku
     /// </summary>
     [HttpGet("avaible-vacation-days")]
-    public async Task<ActionResult<List<UsedVacationVm>>> GetAvaibleVacationDaysAsync([FromQuery] FreeDaysQuery query)
+    public async Task<ActionResult<List<UsedVacationVm>>> GetAvaibleVacationDaysAsync([FromQuery] FreeDaysQuery query, CancellationToken cancellationToken)
     {
-        var result = await mediator.Send(query);
+        var result = await mediator.Send(query, cancellationToken);
         return Ok(result);
     }
 }
