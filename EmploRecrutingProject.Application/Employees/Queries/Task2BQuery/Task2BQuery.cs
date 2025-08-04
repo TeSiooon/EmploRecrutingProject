@@ -1,4 +1,4 @@
-﻿using EmploRecrutingProject.Application.Abstractions;
+﻿using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.ViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,18 +10,17 @@ public class Task2BQuery : IRequest<List<UsedVacationVm>>
 }
 public class Task2BQueryHandler : IRequestHandler<Task2BQuery, List<UsedVacationVm>>
 {
-    private readonly IApplicationDbContext dbContext;
-    public Task2BQueryHandler(IApplicationDbContext dbContext)
+    private readonly IVacationRepository vacationRepository;
+    public Task2BQueryHandler(IVacationRepository vacationRepository)
     {
-        this.dbContext = dbContext;
+        this.vacationRepository = vacationRepository;
     }
     public async Task<List<UsedVacationVm>> Handle(Task2BQuery request, CancellationToken cancellationToken)
     {
         var now = DateTime.Now;
         var currentYear = now.Year;
 
-        var result = await dbContext.Vacations
-            .AsNoTracking()
+        var result = await vacationRepository.Query(cancellationToken)
             .Include(v => v.Employee)
             .Where(v =>
                 v.DateSince.Year == currentYear &&

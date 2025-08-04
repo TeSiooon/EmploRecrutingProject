@@ -1,4 +1,5 @@
 ﻿using EmploRecrutingProject.Application.Abstractions;
+using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.Abstractions.Services;
 using EmploRecrutingProject.Domain.Entities;
 using MediatR;
@@ -15,20 +16,19 @@ public class FreeDaysQuery : IRequest<int>
 }
 public class FreeDaysQueryHandler : IRequestHandler<FreeDaysQuery, int>
 {
-    private readonly IApplicationDbContext dbContext;
+    private readonly IEmployeeRepository employeeRepository;
     private readonly IVacationPolicyService vacationPolicyService;
-    public FreeDaysQueryHandler(IApplicationDbContext dbContext, IVacationPolicyService vacationPolicyService)
+    public FreeDaysQueryHandler(IEmployeeRepository employeeRepository, IVacationPolicyService vacationPolicyService)
     {
-        this.dbContext = dbContext;
+        this.employeeRepository = employeeRepository;
         this.vacationPolicyService = vacationPolicyService;
     }
     public async Task<int> Handle(FreeDaysQuery request, CancellationToken cancellationToken)
     {
-        var employee = await dbContext.Employees
-            .AsNoTracking()
-            .Include(e => e.VacationPackage)
-            .Include(e => e.Vacations)
-            .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken) ?? throw new KeyNotFoundException();
+        var employee = await employeeRepository.Query(cancellationToken)
+                .Include(e => e.VacationPackage)
+                .Include(e => e.Vacations)
+                .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken) ?? throw new KeyNotFoundException();
 
         var freeDays = vacationPolicyService.CountFreeDaysForEmployee(employee, employee.Vacations.ToList(), employee.VacationPackage);
 

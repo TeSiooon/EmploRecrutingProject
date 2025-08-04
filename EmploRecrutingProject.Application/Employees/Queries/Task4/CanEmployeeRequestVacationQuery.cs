@@ -1,4 +1,5 @@
 ﻿using EmploRecrutingProject.Application.Abstractions;
+using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.Abstractions.Services;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -11,19 +12,18 @@ public class CanEmployeeRequestVacationQuery : IRequest<bool>
 }
 public class CanEmployeeRequestVacationQueryHandler : IRequestHandler<CanEmployeeRequestVacationQuery, bool>
 {
-    private readonly IApplicationDbContext dbContext;
+    private readonly IEmployeeRepository employeeRepository;
     private readonly IVacationPolicyService vacationPolicyService;
 
-    public CanEmployeeRequestVacationQueryHandler(IApplicationDbContext dbContext, IVacationPolicyService vacationPolicyService)
+    public CanEmployeeRequestVacationQueryHandler(IEmployeeRepository employeeRepository, IVacationPolicyService vacationPolicyService)
     {
-        this.dbContext = dbContext;
+        this.employeeRepository = employeeRepository;
         this.vacationPolicyService = vacationPolicyService;
     }
 
     public async Task<bool> Handle(CanEmployeeRequestVacationQuery request, CancellationToken cancellationToken)
     {
-        var employee = await dbContext.Employees
-            .AsNoTracking()
+        var employee = await employeeRepository.Query(cancellationToken)
             .Include(e => e.VacationPackage)
             .Include(e => e.Vacations)
             .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken) ?? throw new KeyNotFoundException();

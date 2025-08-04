@@ -1,4 +1,6 @@
-﻿namespace EmploRecrutingProject.API.Extensions;
+﻿using EmploRecrutingProject.API.Middleware;
+
+namespace EmploRecrutingProject.API.Extensions;
 
 public static class WebApplicationBuilderExtensions
 {
@@ -7,5 +9,7 @@ public static class WebApplicationBuilderExtensions
         builder.Services.AddControllers();
 
         builder.Services.AddEndpointsApiExplorer();
+
+        builder.Services.AddScoped<ErrorHandlingMiddleware>();
     }
 }

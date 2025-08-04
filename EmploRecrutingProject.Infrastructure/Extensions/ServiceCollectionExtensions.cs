@@ -1,5 +1,4 @@
-﻿using EmploRecrutingProject.Application.Abstractions;
-using EmploRecrutingProject.Application.Abstractions.Repositories;
+﻿using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.Abstractions.Services;
 using EmploRecrutingProject.Application.Common;
 using EmploRecrutingProject.Infrastructure.Persistance;
@@ -22,7 +21,7 @@ public static class ServiceCollectionExtensions
             options.UseSqlServer(connectionString);
         });
 
-        services.AddScoped<IApplicationDbContext, EmploRecrutingProjectDbContext>();
+        //services.AddScoped<IApplicationDbContext, EmploRecrutingProjectDbContext>();
 
         //Register other infrastructure services here
         services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -30,5 +29,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IEmployeeHierarchyRepository, EmployeeHierarchyRepository>();
         services.AddScoped<IEmployeeHierarchyService, EmployeeHierarchyService>();
         services.AddScoped<IVacationPolicyService, VacationPolicyService>();
+        services.AddScoped<IVacationRepository, VacationRepository>();
+        services.AddScoped<ITeamRepository, TeamRepository>();
     }
 }

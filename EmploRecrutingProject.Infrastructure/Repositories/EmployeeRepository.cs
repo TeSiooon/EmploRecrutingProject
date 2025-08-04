@@ -25,4 +25,10 @@ public class EmployeeRepository : IEmployeeRepository
             .SingleOrDefaultAsync(e => e.Id == employeeId, cancellationToken)
             ?? throw new KeyNotFoundException($"Employee with ID {employeeId} not found.");
     }
+
+    public IQueryable<Employee> Query(CancellationToken cancellationToken = default)
+    {
+        return dbContext.Employees
+            .AsNoTracking();
+    }
 }

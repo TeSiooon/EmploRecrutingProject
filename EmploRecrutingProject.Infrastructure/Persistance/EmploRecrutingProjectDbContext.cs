@@ -1,10 +1,9 @@
-﻿using EmploRecrutingProject.Application.Abstractions;
-using EmploRecrutingProject.Domain.Entities;
+﻿using EmploRecrutingProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmploRecrutingProject.Infrastructure.Persistance;
 
-public class EmploRecrutingProjectDbContext : DbContext, IApplicationDbContext
+public class EmploRecrutingProjectDbContext : DbContext
 {
     public EmploRecrutingProjectDbContext(DbContextOptions<EmploRecrutingProjectDbContext> options)
         : base(options)
