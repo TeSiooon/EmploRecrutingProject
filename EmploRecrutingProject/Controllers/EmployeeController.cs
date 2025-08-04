@@ -1,4 +1,5 @@
 ﻿using EmploRecrutingProject.Application.Employees.Commands.Create;
+using EmploRecrutingProject.Application.Employees.Queries.FreeDaysGuery;
 using EmploRecrutingProject.Application.Employees.Queries.Task2AQuery;
 using EmploRecrutingProject.Application.Employees.Queries.Task2BQuery;
 using EmploRecrutingProject.Application.ViewModels;
@@ -32,9 +33,19 @@ public class EmployeeController(IMediator mediator) : ControllerBase
     /// Dniem zużytym jest dzień, który znajduje się w całości w przeszłości.
     /// </summary>
     [HttpGet("used-vacation-this-year")]
-    public async Task<ActionResult<List<UsedVacationVm>>> GetUsedVacationThisYear()
+    public async Task<ActionResult<List<UsedVacationVm>>> GetUsedVacationThisYearAsync()
     {
         var result = await mediator.Send(new Task2BQuery());
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Wylicza ile dni urlopowych ma do wykorzystania pracownik w bieżącym roku
+    /// </summary>
+    [HttpGet("avaible-vacation-days")]
+    public async Task<ActionResult<List<UsedVacationVm>>> GetAvaibleVacationDaysAsync([FromQuery] FreeDaysQuery query)
+    {
+        var result = await mediator.Send(query);
         return Ok(result);
     }
 }
