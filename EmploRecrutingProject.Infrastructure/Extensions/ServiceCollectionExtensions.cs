@@ -31,5 +31,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<IEmployeeHierarchyRepository, EmployeeHierarchyRepository>();
         services.AddScoped<IEmployeeHierarchyService, EmployeeHierarchyService>();
+        services.AddScoped<IVacationPolicyService, VacationPolicyService>();
     }
 }
