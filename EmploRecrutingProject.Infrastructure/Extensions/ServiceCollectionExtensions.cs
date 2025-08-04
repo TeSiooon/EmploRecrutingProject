@@ -22,9 +22,7 @@ public static class ServiceCollectionExtensions
             options.UseSqlServer(connectionString);
         });
 
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<EmploRecrutingProjectDbContext>());
-
+        services.AddScoped<IApplicationDbContext, EmploRecrutingProjectDbContext>();
 
         //Register other infrastructure services here
         services.AddScoped<IUnitOfWork, UnitOfWork>();

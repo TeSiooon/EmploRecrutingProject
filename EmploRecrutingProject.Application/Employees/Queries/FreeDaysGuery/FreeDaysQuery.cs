@@ -12,26 +12,26 @@ namespace EmploRecrutingProject.Application.Employees.Queries.FreeDaysGuery;
 public class FreeDaysQuery : IRequest<int>
 {
     public Guid EmployeeId { get; init; }
-    internal sealed class FreeDaysQueryHandler : IRequestHandler<FreeDaysQuery, int>
+}
+public class FreeDaysQueryHandler : IRequestHandler<FreeDaysQuery, int>
+{
+    private readonly IApplicationDbContext dbContext;
+    private readonly IVacationPolicyService vacationPolicyService;
+    public FreeDaysQueryHandler(IApplicationDbContext dbContext, IVacationPolicyService vacationPolicyService)
     {
-        private readonly IApplicationDbContext dbContext;
-        private readonly IVacationPolicyService vacationPolicyService;
-        public FreeDaysQueryHandler(IApplicationDbContext dbContext, IVacationPolicyService vacationPolicyService)
-        {
-            this.dbContext = dbContext;
-            this.vacationPolicyService = vacationPolicyService;
-        }
-        public async Task<int> Handle(FreeDaysQuery request, CancellationToken cancellationToken)
-        {
-            var employee = await dbContext.Employees
-                .AsNoTracking()
-                .Include(e => e.VacationPackage)
-                .Include(e => e.Vacations)
-                .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken) ?? throw new KeyNotFoundException();
+        this.dbContext = dbContext;
+        this.vacationPolicyService = vacationPolicyService;
+    }
+    public async Task<int> Handle(FreeDaysQuery request, CancellationToken cancellationToken)
+    {
+        var employee = await dbContext.Employees
+            .AsNoTracking()
+            .Include(e => e.VacationPackage)
+            .Include(e => e.Vacations)
+            .FirstOrDefaultAsync(e => e.Id == request.EmployeeId, cancellationToken) ?? throw new KeyNotFoundException();
 
-            var freeDays = vacationPolicyService.CountFreeDaysForEmployee(employee, employee.Vacations.ToList(), employee.VacationPackage);
+        var freeDays = vacationPolicyService.CountFreeDaysForEmployee(employee, employee.Vacations.ToList(), employee.VacationPackage);
 
-            return freeDays;
-        }
+        return freeDays;
     }
 }

@@ -4,11 +4,7 @@ public static class WebApplicationBuilderExtensions
 {
     public static void AddPresentation(this WebApplicationBuilder builder)
     {
-
-        builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-            });
+        builder.Services.AddControllers();
 
         builder.Services.AddEndpointsApiExplorer();
     }

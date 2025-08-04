@@ -1,6 +1,0 @@
-@EmploRecrutingProject_HostAddress = http://localhost:5110
-
-GET {{EmploRecrutingProject_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
