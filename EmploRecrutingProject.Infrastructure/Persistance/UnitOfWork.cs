@@ -1,5 +1,4 @@
-﻿using EmploRecrutingProject.Application.Abstractions;
-using EmploRecrutingProject.Application.Common;
+﻿using EmploRecrutingProject.Application.Common;
 
 namespace EmploRecrutingProject.Infrastructure.Persistance;
 

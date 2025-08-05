@@ -46,7 +46,7 @@ public class MainSeeder
 
         // urlopy 2019 dla emp1–3
         var vac1 = Vacation.Create(new DateTime(2019, 06, 01), new DateTime(2019, 06, 10), 10 * 8, false, emp1.Id);
-        var vac2 = Vacation.Create(new DateTime(2019, 07, 05), new DateTime(2019, 07, 15), 11 * 8, false, emp2.Id);
+        var vac2 = Vacation.Create(new DateTime(2019, 07, 05), new DateTime(2019, 07, 15), 10 * 8, false, emp2.Id);
         var vac3 = Vacation.Create(new DateTime(2019, 08, 10), new DateTime(2019, 08, 20), 10 * 8, false, emp3.Id);
 
         emp1.AddVacation(vac1);
@@ -68,7 +68,7 @@ public class MainSeeder
 
         // urlopy 2025
         var vac4 = Vacation.Create(new DateTime(2025, 01, 02), new DateTime(2025, 01, 07), 5 * 8, false, emp4.Id);
-        var vac5 = Vacation.Create(new DateTime(2025, 02, 10), new DateTime(2025, 02, 12), 3 * 8, false, emp5.Id);
+        var vac5 = Vacation.Create(new DateTime(2025, 02, 10), new DateTime(2025, 02, 12), 2 * 8, false, emp5.Id);
         var vac6 = Vacation.Create(new DateTime(2025, 03, 15), new DateTime(2025, 03, 20), 5 * 8, false, emp6.Id);
 
         emp4.AddVacation(vac4);
