@@ -21,9 +21,6 @@ public static class ServiceCollectionExtensions
             options.UseSqlServer(connectionString);
         });
 
-        //services.AddScoped<IApplicationDbContext, EmploRecrutingProjectDbContext>();
-
-        //Register other infrastructure services here
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<IEmployeeHierarchyRepository, EmployeeHierarchyRepository>();

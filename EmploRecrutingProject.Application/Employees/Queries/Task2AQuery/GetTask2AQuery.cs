@@ -1,5 +1,4 @@
-﻿using EmploRecrutingProject.Application.Abstractions;
-using EmploRecrutingProject.Application.Abstractions.Repositories;
+﻿using EmploRecrutingProject.Application.Abstractions.Repositories;
 using EmploRecrutingProject.Application.ViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
